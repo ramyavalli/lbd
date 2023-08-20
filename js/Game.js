@@ -38,7 +38,7 @@ class Game {
 
     cars = [car1, car2];
 
-    // C38 TA
+    
     fuels = new Group();
     powerCoins = new Group();
 
