@@ -2,10 +2,11 @@ class Game {
   constructor() {
     this.resetTitle = createElement("h2");
     this.resetButton = createButton("");
+    
     this.leadeboardTitle = createElement("h2");
+
     this.leader1 = createElement("h2");
     this.leader2 = createElement("h2");
-  
   }
 
   getState() {
@@ -37,6 +38,7 @@ class Game {
 
     cars = [car1, car2];
 
+    // C38 TA
     fuels = new Group();
     powerCoins = new Group();
 
@@ -47,7 +49,7 @@ class Game {
     this.addSprites(powerCoins, 18, powerCoinImage, 0.09);
   }
 
-  
+ 
   addSprites(spriteGroup, numberOfSprites, spriteImage, scale) {
     for (var i = 0; i < numberOfSprites; i++) {
       var x, y;
@@ -66,7 +68,7 @@ class Game {
   handleElements() {
     form.hide();
     //form.titleImg.position(40, 50);
-    //form.titleImg.class("gameTitleAfterEffect");
+   // form.titleImg.class("gameTitleAfterEffect");
     this.resetTitle.html("Reset Game");
     this.resetTitle.class("resetText");
     this.resetTitle.position(width / 2 + 350, 40);
@@ -77,17 +79,19 @@ class Game {
     this.leadeboardTitle.html("Leaderboard");
     this.leadeboardTitle.class("resetText");
     this.leadeboardTitle.position(width / 3 - 60, 40);
+
     this.leader1.class("leadersText");
     this.leader1.position(width / 3 - 50, 80);
+
     this.leader2.class("leadersText");
     this.leader2.position(width / 3 - 50, 130);
-
   }
 
   play() {
     this.handleElements();
     this.handleResetButton();
     Player.getPlayersInfo();
+    player.getCarsAtEnd();
 
     if (allPlayers !== undefined) {
       image(track, 0, -height * 5, width, height * 6);
@@ -106,6 +110,7 @@ class Game {
         cars[index - 1].position.x = x;
         cars[index - 1].position.y = y;
 
+      
         if (index === player.index) {
           stroke(10);
           fill("red");
@@ -127,6 +132,8 @@ class Game {
         player.update();
       }
       this.handlePlayerControls();
+     
+     
 
       drawSprites();
     }
@@ -176,6 +183,7 @@ showLeaderboard() {
       players[0].name +
       "&emsp;" +
       players[0].score;
+
     leader2 =
       players[1].rank +
       "&emsp;" +
@@ -183,6 +191,7 @@ showLeaderboard() {
       "&emsp;" +
       players[1].score;
   }
+
   if (players[1].rank === 1) {
     leader1 =
       players[1].rank +
@@ -190,6 +199,7 @@ showLeaderboard() {
       players[1].name +
       "&emsp;" +
       players[1].score;
+
     leader2 =
       players[0].rank +
       "&emsp;" +
@@ -197,9 +207,11 @@ showLeaderboard() {
       "&emsp;" +
       players[0].score;
   }
+
   this.leader1.html(leader1);
   this.leader2.html(leader2);
 }
+
 handlePlayerControls() {
   if (keyIsDown(UP_ARROW)) {
     player.positionY += 10;
@@ -216,4 +228,6 @@ handlePlayerControls() {
     player.update();
   }
 }
+
 }
+

@@ -4,6 +4,7 @@ class Player {
     this.index = null;
     this.positionX = 0;
     this.positionY = 0;
+    this.rank = 0;
 
     this.score = 0;
 
@@ -26,7 +27,7 @@ class Player {
       score: this.score,
     });
   }
-  
+
   getDistance() {
     var playerDistanceRef = database.ref("players/player" + this.index);
     playerDistanceRef.on("value", data => {
@@ -36,7 +37,7 @@ class Player {
     });
   }
  
-
+ 
   getCount() {
     var playerCountRef = database.ref("playerCount");
     playerCountRef.on("value", data => {
@@ -44,14 +45,13 @@ class Player {
     });
   }
 
-  
+ 
   updateCount(count) {
     database.ref("/").update({
       playerCount: count
     });
   }
 
-  
   update() {
     var playerIndex = "players/player" + this.index;
     database.ref(playerIndex).update({
@@ -63,11 +63,22 @@ class Player {
      });
   }
 
-  
+
   static getPlayersInfo() {
     var playerInfoRef = database.ref("players");
     playerInfoRef.on("value", data => {
       allPlayers = data.val();
     });
   }
+  getCarsAtEnd(){
+    database.ref('carsAtEnd').on("value",(data)=>{
+      this.rank = data.val()
+    })
+  }
+
+ static updateCarsAtEnd(rank) {
+   database.ref("/").update({
+     carsAtEnd: rank
+   });
+ }
 } 

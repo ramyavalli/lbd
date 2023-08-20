@@ -12,9 +12,8 @@ function preload() {
   car2_img = loadImage("../assets/car2.png");
   track = loadImage("../assets/track.jpg");
   fuelImage = loadImage("./assets/fuel.png");
-  powerCoinImage = loadImage("./assets/coin.png");
+  powerCoinImage = loadImage("./assets/goldCoin.png");
 }
-
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
@@ -25,7 +24,6 @@ function setup() {
  
 }
 
-
 function draw() {
   background(backgroundImage);
   if (playerCount === 2) {
@@ -34,6 +32,10 @@ function draw() {
 
   if (gameState === 1) {
     game.play();
+  }
+  if (gameState === 2) {
+    game.showLeaderboard();
+    
   }
 }
 

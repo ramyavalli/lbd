@@ -97,7 +97,11 @@ canvas {
 
 .leadersText{
   font-size: 20px;
-  color: white;
+  color: rgb(67, 148, 228);
   font-family: vollkorn;
   text-align: center;
+  text-shadow: -1px 1px 0 #4d06e7,
+  1px 1px 0 #4517ff,
+  1px -1px 0 #5917ff,
+  -1px -1px 0 #5917ff;
 }
