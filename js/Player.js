@@ -37,7 +37,7 @@ this.fuel = 185;
       this.positionY = data.positionY;
     });
   }
- 
+
   getCount() {
     var playerCountRef = database.ref("playerCount");
     playerCountRef.on("value", data => {
@@ -63,6 +63,7 @@ this.fuel = 185;
       score: this.score
      });
   }
+
 
   static getPlayersInfo() {
     var playerInfoRef = database.ref("players");
