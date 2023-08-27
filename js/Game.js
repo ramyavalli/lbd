@@ -49,7 +49,7 @@ class Game {
     this.addSprites(powerCoins, 18, powerCoinImage, 0.09);
   }
 
- 
+
   addSprites(spriteGroup, numberOfSprites, spriteImage, scale) {
     for (var i = 0; i < numberOfSprites; i++) {
       var x, y;
@@ -67,15 +67,14 @@ class Game {
 
   handleElements() {
     form.hide();
-    //form.titleImg.position(40, 50);
-   // form.titleImg.class("gameTitleAfterEffect");
+    form.titleImg.position(40, 50);
+    form.titleImg.class("gameTitleAfterEffect");
     this.resetTitle.html("Reset Game");
     this.resetTitle.class("resetText");
-    this.resetTitle.position(width / 2 + 350, 40);
+    this.resetTitle.position(width / 2 + 200, 40);
 
     this.resetButton.class("resetButton");
-    this.resetButton.position(width / 2 + 400, 10);
-
+    this.resetButton.position(width / 2 + 230, 100);
     this.leadeboardTitle.html("Leaderboard");
     this.leadeboardTitle.class("resetText");
     this.leadeboardTitle.position(width / 3 - 60, 40);
@@ -110,7 +109,7 @@ class Game {
         cars[index - 1].position.x = x;
         cars[index - 1].position.y = y;
 
-      
+        
         if (index === player.index) {
           stroke(10);
           fill("red");
@@ -132,8 +131,15 @@ class Game {
         player.update();
       }
       this.handlePlayerControls();
-     
-     
+      const finishLine = height * 6 - 100;
+
+      if (player.positionY > finishLine) {
+        gameState = 2;
+        player.rank += 1;
+        Player.updateCarsAtEnd(player.rank);
+        player.update();
+        this.showRank();
+      }
 
       drawSprites();
     }
@@ -223,11 +229,19 @@ handlePlayerControls() {
     player.update();
   }
 
-  if (keyIsDown(RIGHT_ARROW) && player.positionX < width / 2 + 150) {
+  if (keyIsDown(RIGHT_ARROW) && player.positionX < width / 2 + 300) {
     player.positionX += 5;
     player.update();
   }
 }
-
+showRank() {
+  swal({
+    title: `Awesome!${"\n"}Rank${"\n"}${player.rank}`,
+    text: "You reached the finish line successfully",
+    imageUrl:
+      "https://raw.githubusercontent.com/vishalgaddam873/p5-multiplayer-car-race-game/master/assets/cup.png",
+    imageSize: "100x100",
+    confirmButtonText: "Ok"
+  });
 }
-
+}

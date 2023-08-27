@@ -15,6 +15,7 @@ function preload() {
   powerCoinImage = loadImage("./assets/goldCoin.png");
 }
 
+
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   database = firebase.database();
@@ -23,6 +24,7 @@ function setup() {
   game.start();
  
 }
+
 
 function draw() {
   background(backgroundImage);
